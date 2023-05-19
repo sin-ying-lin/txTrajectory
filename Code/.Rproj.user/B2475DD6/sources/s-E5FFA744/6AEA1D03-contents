@@ -1,0 +1,120 @@
+library(lm.beta)
+m_pid5$coefficients
+std_coef = lm.beta(m_pid5)$standardized.coefficients
+
+pid5_loc = grep('NEG|DET|DIS|ANT|PSY', names(std_coef))
+slope_loc = grep('SESSION', names(std_coef))
+pid5_int_loc= setdiff(pid5_loc,slope_loc)
+pid5_slp_loc = intersect(pid5_loc,slope_loc)
+
+pid5_int_r2 = sum(std_coef[pid5_int_loc]*
+                    cor(m_pid5$x[,pid5_int_loc], m_pid5$y), na.rm = T)
+
+pid5_slp_r2 = sum(std_coef[pid5_slp_loc]*
+                    cor(m_pid5$x[,pid5_slp_loc], m_pid5$y), na.rm = T)
+
+
+summary(lm(Y ~ (SESSION + I(SESSION^2))*(NEG+DET+DIS+ANT+PSY), mlmdata))
+
+sum(std_coef*
+      cor(m_pid5$x, m_pid5$y), na.rm = T)
+summary(m_pid5)$r.squared
+
+
+
+
+sum(std_coef*cov(m_pid5$x, m_pid5$y))
+
+
+nlmer(Y ~ (SESSION)*NEG ~ SESSION|ID,
+      mlmdata, start = c(SESSION = 0, NEG = 0))
+
+
+assign(paste0('cgQInt_', y),
+       nlmer(Y ~ q_modelg(SESSION, b0, b1, b2, b3, b4, ) ~ (b0|ID), data = mlmdata,
+             start = startsite))
+assign(paste0('sumUcgQInt_', y), summary(get(paste0('ucgQInt_', y))))
+capture.output(get(paste0('sumUcgQInt_', y)), 
+               file = paste0('../Results/growthModels/ucgQInt_', y))
+
+
+
+test = lm(Y ~ SESSION*iniSev + I(SESSION^2) , mlmdata, x =T, y = T)
+beta = lm.beta(test)$standardized.coefficients
+
+summary(test)$r.squared
+
+
+cov()
+c(1,8)*c(2,1)
+
+pid5
+
+SSE = sum((m_pid5$fitted.values-m_pid5$y)^2)
+SST = sum((m_pid5$y - mean(m_pid5$y))^2)
+1-SSE/SST
+sum(std_coef)^2
+
+a = summary(lm(Y ~ (SESSION + I(SESSION^2))*iniSev, mlmdata, x =T, y = T))$r.squared
+b = summary(lm(Y ~ (SESSION + I(SESSION^2) + NEG+ DET+ ANT+ DIS+ PSY)*iniSev, mlmdata, x =T, y = T))$r.squared
+c = summary(lm(Y ~ (SESSION + I(SESSION^2))*iniSev*(NEG+ DET+ ANT+ DIS+ PSY), mlmdata, x =T, y = T))$r.squared
+
+model1.contrref <- lm(y ~ cond, data=data)
+
+
+q_model = function(SESSION, NEG, DET, ANT, DIS, PSY, b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12) 
+  (b0 + b1*SESSION + b2*SESSION^2 + 
+     b3*SESSION*NEG +b4*SESSION^2*NEG +
+     b5*SESSION*DET +b6*SESSION^2*DET +
+     b7*SESSION*ANT +b8*SESSION^2*ANT +
+     b9*SESSION*DIS +b10*SESSION^2*DIS +
+     b11*SESSION*PSY +b12*SESSION^2*PSY )
+
+q_modelg = deriv(body(q_model), 
+                 namevec = c('b0', 'b1', 'b2','b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b9',
+                             'b10', 'b11', 'b12'), 
+                 function.arg = q_model) 
+startsite <- c(b0 = 0, b1 = 0,  b2 = 0, b3 = 0, b4 = 0,
+               b5 = 0, b6 = 0, b7 = 0, b8 = 0, b9 = 0, 
+               b10 = 0, b11 = 0, b12 = 0)
+
+m_pid5 = nlmer(Y ~ q_modelg(SESSION, NEG, DET, ANT, DIS, PSY, b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12) ~ 
+        (b0+b1+b2|ID), data = mlmdata, start = startsite)
+
+
+mlmdata
+
+
+?lmer
+
+assign(paste0('ucgQInt_', y),
+       nlmer(Y ~ q_modelg(SESSION, b0, b1, b2) ~ (b0|ID), data = mlmdata,
+             start = startsite))
+assign(paste0('sumUcgQInt_', y), summary(get(paste0('ucgQInt_', y))))
+capture.output(get(paste0('sumUcgQInt_', y)), 
+               file = paste0('../Results/growthModels/ucgQInt_', y))
+
+
+
+nlmer(Y ~ SESSION^2 ~ 1|ID,
+      mlmdata, start = c(SESSION = 0))
+
+
+q_model = function(SESSION, NEG, DET, ANT, DIS, PSY, b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12) 
+  (b0 + b1*SESSION + b2*SESSION^2 + 
+     b3*SESSION*NEG +b4*SESSION^2*NEG +
+     b5*SESSION*DET +b6*SESSION^2*DET +
+     b7*SESSION*ANT +b8*SESSION^2*ANT +
+     b9*SESSION*DIS +b10*SESSION^2*DIS +
+     b11*SESSION*PSY +b12*SESSION^2*PSY )
+
+q_modelg = deriv(body(q_model), 
+                 namevec = c('b0', 'b1', 'b2','b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b9',
+                             'b10', 'b11', 'b12'), 
+                 function.arg = q_model) 
+startsite <- c(b0 = 0, b1 = 0,  b2 = 0, b3 = 0, b4 = 0,
+               b5 = 0, b6 = 0, b7 = 0, b8 = 0, b9 = 0, 
+               b10 = 0, b11 = 0, b12 = 0)
+
+m_pid5 = nlmer(Y ~ q_modelg(SESSION, NEG, DET, ANT, DIS, PSY, b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12) ~ 
+                 (b0+b1+b2|ID), data = mlmdata, start = startsite)

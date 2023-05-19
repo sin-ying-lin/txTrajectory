@@ -1,0 +1,53 @@
+
+Call:
+lm(formula = as.formula(paste0("Y_int ~ (SESSION + I(SESSION^2))*(", 
+    paste0(PDName, collapse = " + "), ")")), data = mlmdata, 
+    x = T, y = T)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.3716 -0.6079  0.1197  0.5599  5.3251 
+
+Coefficients:
+                                    Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                       -3.229e-01  4.178e-02  -7.729 1.57e-14 ***
+SESSION                            4.612e-03  2.522e-03   1.829 0.067522 .  
+I(SESSION^2)                      -8.774e-05  2.122e-05  -4.134 3.69e-05 ***
+Paranoid                          -4.624e-02  4.704e-01  -0.098 0.921692    
+Schizoid                          -3.566e-01  2.361e-01  -1.510 0.131094    
+Schizotypal                        5.289e-01  1.146e+00   0.461 0.644494    
+Antisocial                         1.721e+00  3.766e-01   4.569 5.13e-06 ***
+Borderline                         1.543e-01  1.053e-01   1.465 0.142966    
+Histrionic                         1.953e-01  1.005e+00   0.194 0.845949    
+Narcissistic                      -1.180e-02  3.451e-01  -0.034 0.972722    
+Avoidant                          -1.328e-02  1.586e-01  -0.084 0.933267    
+Dependent                          3.229e-01  8.320e-01   0.388 0.697953    
+Obsessive_compulsive               8.024e-02  2.979e-01   0.269 0.787665    
+SESSION:Paranoid                  -3.297e-01  3.537e-01  -0.932 0.351441    
+SESSION:Schizoid                  -1.878e-02  8.016e-03  -2.342 0.019252 *  
+SESSION:Schizotypal               -1.254e+00  1.839e+00  -0.682 0.495593    
+SESSION:Antisocial                -2.035e-01  5.815e-02  -3.501 0.000473 ***
+SESSION:Borderline                 1.045e-02  5.143e-03   2.032 0.042214 *  
+SESSION:Histrionic                -2.466e+00  6.622e-01  -3.724 0.000201 ***
+SESSION:Narcissistic              -2.632e-02  1.638e-01  -0.161 0.872336    
+SESSION:Avoidant                   3.316e-02  5.311e-02   0.624 0.532377    
+SESSION:Dependent                 -1.125e+00  2.159e+00  -0.521 0.602464    
+SESSION:Obsessive_compulsive      -9.203e-02  1.344e-01  -0.685 0.493420    
+I(SESSION^2):Paranoid              6.372e-02  5.197e-02   1.226 0.220237    
+I(SESSION^2):Schizoid              2.150e-04  5.536e-05   3.884 0.000105 ***
+I(SESSION^2):Schizotypal           8.509e-02  5.876e-01   0.145 0.884870    
+I(SESSION^2):Antisocial            4.539e-03  2.885e-03   1.573 0.115737    
+I(SESSION^2):Borderline            4.727e-05  3.698e-05   1.279 0.201189    
+I(SESSION^2):Histrionic            3.114e-01  9.071e-02   3.433 0.000608 ***
+I(SESSION^2):Narcissistic          8.217e-04  1.415e-02   0.058 0.953689    
+I(SESSION^2):Avoidant             -2.272e-03  2.867e-03  -0.792 0.428190    
+I(SESSION^2):Dependent             6.351e-01  1.099e+00   0.578 0.563484    
+I(SESSION^2):Obsessive_compulsive  9.073e-03  9.433e-03   0.962 0.336253    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.175 on 2436 degrees of freedom
+  (7 observations deleted due to missingness)
+Multiple R-squared:  0.1393,	Adjusted R-squared:  0.128 
+F-statistic: 12.32 on 32 and 2436 DF,  p-value: < 2.2e-16
+

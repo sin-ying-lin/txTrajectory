@@ -1,0 +1,68 @@
+###############
+#Load Packages#
+###############
+
+packages = c('psych', 'dplyr', 'DiagrammeR', 'lavaan', 
+             'DiagrammeR', 'DiagrammeRsvg', 'magrittr', 'rsvg', 'GPArotation')
+for (package in packages){
+  if(!require(package, character.only = T)){
+    install.packages(package)
+    library(package, character.only = T)
+  }
+}
+
+
+###########
+#Load Data#
+###########
+ipdeSx = read.csv('../Data/IPDE_Sx.csv', header = T)
+ipdeSx = ipdeSx[!duplicated(ipdeSx$ID),]
+
+
+############################################
+#Dichotimized IPDE Symptom Data Preparation#
+############################################
+
+#Dichotomies function 
+dichotomoize = function(x, cutoff){
+  return(ifelse(x> cutoff, 1, 0))
+}
+
+ipdeSxD = as.data.frame(lapply(ipdeSx, dichotomoize, 0)) #cutoff = 0
+ipdeSxD[is.na(ipdeSxD)] = 0
+cd = ifelse(rowSums(ipdeSxD[grep('cd', colnames(ipdeSxD))]) >= 3, 1, 0)
+ipdeSxD[,grep('cd', colnames(ipdeSxD))] = NULL
+ipdeSxD$antisocial_cd = cd
+str(ipdeSxD)
+ipdeSxD$ID = ipdeSx$ID
+
+
+###################################
+#EFA on Dichotimized IPDE Symptoms#
+###################################
+ipdeSxD  = 
+  ipdeSxD %>%
+    select(!ID)
+
+efa_all = fa(ipdeSxD, nfactors = 5, rotate = 'oblimin')
+
+ipdeSxD4EFA0.5 = ipdeSxD[,-which(KMO(cor(ipdeSxD))$MSAi < 0.5)]
+efa_0.5 = fa(ipdeSxD4EFA0.5, nfactors = 5, rotate = 'oblimin')
+
+ipdeSxD4EFA0.6 = ipdeSxD[,-which(KMO(cor(ipdeSxD))$MSAi < 0.6)]
+efa_0.6 = fa(ipdeSxD4EFA0.6, nfactors = 5, rotate = 'oblimin')
+
+efa5ScoreAll = factor.scores(ipdeSxD, f = efa_all, method = 'tenBerge')
+efa5Score0.5 = factor.scores(ipdeSxD4EFA0.5, f = efa_0.5, method = 'tenBerge')
+efa5Score0.6 = factor.scores(ipdeSxD4EFA0.6, f = efa_0.6, method = 'tenBerge')
+
+
+cor(efa5ScoreAll$scores, efa5Score0.5$scores)
+cor(efa5ScoreAll$scores, efa5Score0.6$scores)
+cor(efa5Score0.5$scores, efa5Score0.6$scores)
+
+
+pid5FactorScore = data.frame(ID = c(1:nrow(ipdeSx)), 
+                             efa5Score$scores)
+colnames(pid5FactorScore) = c('ID', 'NEG', 'DET', 'DIS', 'ANT', 'PSY')
+write.csv(pid5FactorScore, '../Data/pid5FactorScore.csv', row.names = F)

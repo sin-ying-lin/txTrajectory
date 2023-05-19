@@ -1,0 +1,12 @@
+afurl <- "https://raw.githubusercontent.com/lme4/lme4/master/misc/issues/allFit.R"
+eval(parse(text=getURL(afurl)))
+aa <- allFit(mlm_pid5_SA)
+aa
+mlm_pd_VIOLN
+
+mlm_pd_VIOLN
+control
+?allFit
+
+aa
+?lmer

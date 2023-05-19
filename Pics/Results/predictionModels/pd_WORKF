@@ -1,0 +1,86 @@
+
+Call:
+lm(formula = as.formula(paste0("Y ~ (SESSION + I(SESSION^2))*(", 
+    paste0(PDName, collapse = " + "), ")* iniSev")), data = mlmdata, 
+    x = T, y = T)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.4986 -0.3850 -0.1078  0.3003  6.6422 
+
+Coefficients: (12 not defined because of singularities)
+                                           Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                              -1.729e-01  3.270e-02  -5.289 1.35e-07 ***
+SESSION                                  -7.775e-03  1.834e-03  -4.239 2.34e-05 ***
+I(SESSION^2)                              1.339e-05  1.516e-05   0.883  0.37738    
+Paranoid                                 -1.766e+00  1.086e+00  -1.626  0.10407    
+Schizoid                                 -3.395e+00  2.795e+00  -1.214  0.22474    
+Schizotypal                               2.807e+00  3.430e+00   0.818  0.41330    
+Antisocial                               -7.840e-01  4.027e-01  -1.947  0.05168 .  
+Borderline                               -1.281e-01  2.366e-01  -0.541  0.58833    
+Histrionic                                3.165e+00  1.304e+00   2.428  0.01528 *  
+Narcissistic                              9.136e-01  5.144e-01   1.776  0.07585 .  
+Avoidant                                  3.830e-01  2.273e-01   1.685  0.09214 .  
+Dependent                                -1.384e+00  1.729e+00  -0.800  0.42361    
+Obsessive_compulsive                      2.972e-01  3.615e-01   0.822  0.41103    
+iniSev                                    6.112e-01  2.808e-02  21.766  < 2e-16 ***
+SESSION:Paranoid                          1.488e+00  8.732e-01   1.705  0.08840 .  
+SESSION:Schizoid                          3.728e+00  3.465e+00   1.076  0.28204    
+SESSION:Schizotypal                      -3.485e+00  3.895e+00  -0.895  0.37097    
+SESSION:Antisocial                        4.049e-01  1.540e-01   2.629  0.00863 ** 
+SESSION:Borderline                        4.068e-03  5.772e-02   0.070  0.94382    
+SESSION:Histrionic                       -1.764e+00  7.153e-01  -2.465  0.01376 *  
+SESSION:Narcissistic                      4.451e-03  2.615e-01   0.017  0.98642    
+SESSION:Avoidant                         -2.746e-01  1.007e-01  -2.728  0.00642 ** 
+SESSION:Dependent                         4.876e-01  1.113e+00   0.438  0.66132    
+SESSION:Obsessive_compulsive             -4.225e-03  1.351e-01  -0.031  0.97506    
+I(SESSION^2):Paranoid                    -1.980e-01  1.214e-01  -1.630  0.10318    
+I(SESSION^2):Schizoid                    -7.004e-01  7.427e-01  -0.943  0.34578    
+I(SESSION^2):Schizotypal                  7.000e-01  9.637e-01   0.726  0.46773    
+I(SESSION^2):Antisocial                  -3.025e-02  1.050e-02  -2.881  0.00401 ** 
+I(SESSION^2):Borderline                   2.366e-04  2.016e-03   0.117  0.90659    
+I(SESSION^2):Histrionic                   1.922e-01  8.616e-02   2.230  0.02584 *  
+I(SESSION^2):Narcissistic                -4.427e-04  3.135e-02  -0.014  0.98874    
+I(SESSION^2):Avoidant                     1.994e-02  6.904e-03   2.887  0.00392 ** 
+I(SESSION^2):Dependent                           NA         NA      NA       NA    
+I(SESSION^2):Obsessive_compulsive        -1.089e-03  9.210e-03  -0.118  0.90588    
+SESSION:iniSev                           -7.574e-03  1.922e-03  -3.940 8.41e-05 ***
+I(SESSION^2):iniSev                       1.416e-05  1.642e-05   0.862  0.38860    
+Paranoid:iniSev                           1.417e-01  5.022e-01   0.282  0.77785    
+Schizoid:iniSev                           3.105e+00  2.703e+00   1.148  0.25089    
+Schizotypal:iniSev                               NA         NA      NA       NA    
+Antisocial:iniSev                                NA         NA      NA       NA    
+Borderline:iniSev                        -2.278e-01  1.423e-01  -1.601  0.10943    
+Histrionic:iniSev                                NA         NA      NA       NA    
+Narcissistic:iniSev                       2.983e-01  3.074e-01   0.970  0.33199    
+Avoidant:iniSev                          -7.829e-02  1.295e-01  -0.605  0.54551    
+Dependent:iniSev                          1.552e+00  2.473e+00   0.628  0.53038    
+Obsessive_compulsive:iniSev               1.059e+00  3.435e-01   3.083  0.00208 ** 
+SESSION:Paranoid:iniSev                  -5.121e-01  4.114e-01  -1.245  0.21342    
+SESSION:Schizoid:iniSev                  -3.583e+00  3.332e+00  -1.075  0.28238    
+SESSION:Schizotypal:iniSev                       NA         NA      NA       NA    
+SESSION:Antisocial:iniSev                        NA         NA      NA       NA    
+SESSION:Borderline:iniSev                 7.439e-03  3.520e-02   0.211  0.83264    
+SESSION:Histrionic:iniSev                        NA         NA      NA       NA    
+SESSION:Narcissistic:iniSev              -9.337e-02  1.895e-01  -0.493  0.62220    
+SESSION:Avoidant:iniSev                   1.147e-01  5.108e-02   2.245  0.02489 *  
+SESSION:Dependent:iniSev                         NA         NA      NA       NA    
+SESSION:Obsessive_compulsive:iniSev      -4.829e-01  2.327e-01  -2.075  0.03811 *  
+I(SESSION^2):Paranoid:iniSev              7.593e-02  6.068e-02   1.251  0.21101    
+I(SESSION^2):Schizoid:iniSev              6.735e-01  7.141e-01   0.943  0.34572    
+I(SESSION^2):Schizotypal:iniSev                  NA         NA      NA       NA    
+I(SESSION^2):Antisocial:iniSev                   NA         NA      NA       NA    
+I(SESSION^2):Borderline:iniSev           -1.203e-04  1.235e-03  -0.097  0.92241    
+I(SESSION^2):Histrionic:iniSev                   NA         NA      NA       NA    
+I(SESSION^2):Narcissistic:iniSev          1.070e-02  2.503e-02   0.428  0.66898    
+I(SESSION^2):Avoidant:iniSev             -9.205e-03  3.347e-03  -2.750  0.00600 ** 
+I(SESSION^2):Dependent:iniSev                    NA         NA      NA       NA    
+I(SESSION^2):Obsessive_compulsive:iniSev  3.744e-02  3.441e-02   1.088  0.27669    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7869 on 2156 degrees of freedom
+  (17 observations deleted due to missingness)
+Multiple R-squared:  0.4449,	Adjusted R-squared:  0.4312 
+F-statistic:  32.6 on 53 and 2156 DF,  p-value: < 2.2e-16
+

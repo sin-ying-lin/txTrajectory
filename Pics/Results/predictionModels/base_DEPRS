@@ -1,0 +1,24 @@
+
+Call:
+lm(formula = Y ~ SESSION + I(SESSION^2) * iniSev, data = mlmdata, 
+    x = T, y = T)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.0829 -0.8826 -0.1303  0.7886  4.3838 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(>|t|)    
+(Intercept)          2.534e-01  6.286e-02   4.030 5.75e-05 ***
+SESSION             -1.133e-02  2.382e-03  -4.754 2.12e-06 ***
+I(SESSION^2)         6.300e-05  2.174e-05   2.898   0.0038 ** 
+iniSev               6.405e-01  2.042e-02  31.373  < 2e-16 ***
+I(SESSION^2):iniSev -1.156e-06  4.457e-06  -0.259   0.7954    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.386 on 2217 degrees of freedom
+  (5 observations deleted due to missingness)
+Multiple R-squared:  0.349,	Adjusted R-squared:  0.3478 
+F-statistic: 297.1 on 4 and 2217 DF,  p-value: < 2.2e-16
+

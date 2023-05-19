@@ -1,0 +1,39 @@
+library(dplyr)
+library(tidyr)
+mlmdata
+predict(ucgQSlp_DEPRS)
+
+str(ucgQSlp_DEPRS)
+
+plotdata = 
+  ucgCSlp_DEPRS@frame %>%
+  mutate(`Linear Int` = predict(ucgLInt_DEPRS),
+         `Linear Int+Slp` = predict(ucgLSlp_DEPRS),
+         `Quadratic Int` = predict(ucgQInt_DEPRS),
+         `Quadratic Int+Slp` = predict(ucgQSlp_DEPRS),
+         `Cubic Int` = predict(ucgCInt_DEPRS),
+         `Cubic Int+Slp` = predict(ucgCSlp_DEPRS)) %>%
+  group_by(ID) %>%
+  filter(SESSION >= 10) %>%
+  filter(ID <= 37) %>%
+  gather(key = 'model', value = 'PRED', -c(1:3)) %>%
+  ungroup() %>%
+  separate(model, c("Shape", "Random Effects"), sep = '\\s') %>%
+  mutate(Shape = factor(Shape, levels = c('Linear', 'Quadratic', 'Cubic'))) %>%
+  mutate(`Random Effects` = factor(`Random Effects`, levels = c('Int', 'Int+Slp'),
+                                   labels = c('Random Intercept', 'Random \n Intercept + Slope')))
+
+
+
+ggplot(plotdata, aes(x=SESSION, y=Y, color = as.factor(ID))) + 
+  geom_point()  +
+  geom_line(aes(y = PRED), size = 1) +
+  facet_grid(`Random Effects`~Shape) +
+  theme_classic() + 
+  ylab('DEPRESSION') +
+  labs(color = 'ID') +
+  theme(text = element_text(size = 25)) 
+
+ggsave('../../Dissertation/trjExample.pdf', width = 9, height = 6)
+
+

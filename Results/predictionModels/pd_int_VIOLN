@@ -1,0 +1,33 @@
+
+Call:
+lm(formula = as.formula(paste0("Y ~ SESSION*iniSev + (", paste0(PDName, 
+    collapse = " + "), ") ")), data = mlmdata, x = T, y = T)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.5080 -0.1005 -0.0834  0.0053 13.0401 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(>|t|)    
+(Intercept)          -0.0199957  0.0270336  -0.740 0.459584    
+SESSION              -0.0013435  0.0008602  -1.562 0.118463    
+iniSev                0.5480407  0.0218662  25.063  < 2e-16 ***
+Paranoid              0.1938501  0.1916262   1.012 0.311838    
+Schizoid              0.0105941  0.0743368   0.143 0.886686    
+Schizotypal           0.0050522  0.4928630   0.010 0.991822    
+Antisocial            0.4277513  0.1257409   3.402 0.000681 ***
+Borderline            0.2830833  0.0522642   5.416 6.74e-08 ***
+Histrionic           -5.1508086  0.3719919 -13.847  < 2e-16 ***
+Narcissistic         -0.4679976  0.1580330  -2.961 0.003095 ** 
+Avoidant             -0.2388496  0.0788693  -3.028 0.002487 ** 
+Dependent            -0.0999586  0.4924677  -0.203 0.839173    
+Obsessive_compulsive  0.0046794  0.1552919   0.030 0.975964    
+SESSION:iniSev        0.0007872  0.0027652   0.285 0.775903    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8517 on 2199 degrees of freedom
+  (14 observations deleted due to missingness)
+Multiple R-squared:  0.311,	Adjusted R-squared:  0.3069 
+F-statistic: 76.34 on 13 and 2199 DF,  p-value: < 2.2e-16
+

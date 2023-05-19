@@ -1,0 +1,24 @@
+{
+    "id": "AEA10133",
+    "path": "~/Desktop/Research/HiTOP_Collaboration_Penn_SBU/Code/growthModeling.R",
+    "project_path": "growthModeling.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645986925404.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "cursorPosition": "273,0",
+        "scrollLine": "256"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1652803442,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1652803442630,
+    "read_only": false,
+    "read_only_alternatives": []
+}

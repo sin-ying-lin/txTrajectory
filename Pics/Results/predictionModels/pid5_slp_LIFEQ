@@ -1,0 +1,37 @@
+
+Call:
+lm(formula = Y_int ~ (SESSION + I(SESSION^2)) * (NEG + DET + 
+    ANT + DIS + PSY), data = mlmdata, x = T, y = T)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.8648 -0.4212  0.0444  0.5708  3.5111 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      -6.370e-02  3.108e-02  -2.050 0.040501 *  
+SESSION          -5.392e-03  2.052e-03  -2.628 0.008639 ** 
+I(SESSION^2)     -9.231e-05  1.946e-05  -4.744 2.21e-06 ***
+NEG               4.663e-03  3.169e-02   0.147 0.883048    
+DET              -1.671e-01  3.213e-02  -5.202 2.14e-07 ***
+ANT               8.090e-02  3.076e-02   2.630 0.008594 ** 
+DIS              -3.007e-02  3.379e-02  -0.890 0.373542    
+PSY               5.920e-02  3.326e-02   1.780 0.075229 .  
+SESSION:NEG       1.173e-02  2.262e-03   5.186 2.32e-07 ***
+SESSION:DET       9.642e-03  2.070e-03   4.659 3.35e-06 ***
+SESSION:ANT       5.505e-03  1.473e-03   3.738 0.000190 ***
+SESSION:DIS       6.056e-03  2.288e-03   2.646 0.008187 ** 
+SESSION:PSY      -6.197e-04  3.213e-03  -0.193 0.847056    
+I(SESSION^2):NEG  9.695e-05  2.427e-05   3.995 6.66e-05 ***
+I(SESSION^2):DET -1.440e-04  2.113e-05  -6.815 1.18e-11 ***
+I(SESSION^2):ANT -4.637e-05  1.208e-05  -3.840 0.000126 ***
+I(SESSION^2):DIS -2.514e-04  2.463e-05 -10.207  < 2e-16 ***
+I(SESSION^2):PSY -9.261e-05  3.529e-05  -2.624 0.008744 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.015 on 2452 degrees of freedom
+  (6 observations deleted due to missingness)
+Multiple R-squared:  0.2901,	Adjusted R-squared:  0.2852 
+F-statistic: 58.94 on 17 and 2452 DF,  p-value: < 2.2e-16
+

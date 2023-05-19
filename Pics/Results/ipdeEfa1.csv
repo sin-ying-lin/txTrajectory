@@ -1,0 +1,70 @@
+"Sx_Code","Sx_Description","res[, 2:(i + 1)]"
+"antisocial_cd","Behavioral problems",0.270375794289869
+"antisocial1","Irresponsibility (work)",0.353865721674062
+"antisocial2","Impulsivity (planning)",0.199874387678692
+"antisocial3","Irresponsibility (financial)",0.370319115080257
+"antisocial4","Aggressiveness",0.462897411107966
+"antisocial5","Deceitfulness",0.431187071936464
+"antisocial6","Recklessness",0.299132880832234
+"antisocial7","Illegal behavior",0.383511597663372
+"antisocial8","No remorse",0.313434461624986
+"avoidant1","Avoid rejections",0.205340454653821
+"avoidant2","Inferiority feelings",0.301605386455403
+"avoidant3","Inadequacy feelings",0.185232670987309
+"avoidant4","Relationship restraint",0.198900875151199
+"avoidant5","Avoid intimacy",0.277818451097929
+"avoidant6","Fear of criticism and rejection",0.313767494986565
+"avoidant7","Avoid interpersonal risk",0.305871841202633
+"borderline1","Identity disturbance (self-image)",0.494095045011301
+"borderline10","Sexual impulsivity",0.526848574341953
+"borderline11","Identity disturbance (gender)",0.26194819044152
+"borderline12","Paranoia/dissociation",0.444290790004484
+"borderline13","Impulsivity (self-damaging)",0.462047279211924
+"borderline14","Self-injuring/suicide",0.398525167156112
+"borderline2","Identity disturbance (goals)",0.43786790160476
+"borderline3","Identity disturbance(values)",0.462034041533275
+"borderline4","Identity disturbance (friendship)",0.380153768835662
+"borderline5","Unstable and intense relationships",0.640859896915098
+"borderline6","Chronic emptiness",0.489010221791645
+"borderline7","Fear of abandonment",0.465820366311491
+"borderline8","Affective instability",0.540951302398262
+"borderline9","Intense anger",0.527442572025271
+"dependent1","Inability to make decisions on own",0.215133592306326
+"dependent2","Gives other responsibility",0.293256833888786
+"dependent3","Can't initiate tasks",0.215830594292691
+"dependent4","Replaces relationships quickly",0.449138021435367
+"dependent5","Always agrees with others",0.143327031500361
+"dependent8","Fear of being left to care for self",0.107511429390837
+"histrionic1","suggestible",0.272538436932715
+"histrionic2","Desire to be center of attention",0.340733852594348
+"histrionic3","Uses appearance to attract attention",0.381171741562465
+"histrionic4","Thinks other are closer than in reality",0.360878307765548
+"histrionic5","self-dramatization",0.303801893956176
+"histrionic6","shallow or shifting emotions",0.446546555033788
+"histrionic7","Provocative or sexualized behavior",0.37256610166748
+"narcissistic1","Requires excessive admiration",0.272358032347194
+"narcissistic2","Grandiosity",0.36554197598764
+"narcissistic3","Fantasies",0.358859516440628
+"narcissistic4","Feelings of uniqueness",0.37342071179926
+"narcissistic5","Lacks empathy ",0.289349170257221
+"narcissistic6","sense of entitlement ",0.310877135706743
+"narcissistic7","Exploitative",0.388727779151625
+"narcissistic8","Envious of others/perceives others as envious",0.304820263800437
+"narcissistic9","Arrogant, haughty",0.254062148036751
+"oc3","Preoccupied with details",0.178009832268413
+"oc4","Hoarding",0.300459944495181
+"oc7","Can't delegate tasks",0.262546820354496
+"oc8","Rigid and stubborn",0.317731662460871
+"paranoid1","Reluctant to confide due to fear of maliciousness",0.308132876446976
+"paranoid2","Unjustified doubt in loyalty and trust",0.441089016686137
+"paranoid3","Persistent grudges",0.405285192138915
+"paranoid4","Perceives attacks on character",0.35450411450387
+"paranoid5","Perceives hidden threatening ",0.440862877787127
+"paranoid6","suspects harm, exploitation, and deceit",0.475602119013183
+"paranoid7","suspects infidelity",0.312578144261509
+"schizoid1","No close friends",0.207044140166773
+"schizoid2","No desire for relationships",0.30283458578847
+"schizoid3","Almost always solitary",0.183782584874169
+"schizoid6","No interest in sexual activity",0.135159664287934
+"schizotypal1","Social anxiety",0.238901430320818
+"schizotypal2","Ideas of reference",0.312667311701944

@@ -1,0 +1,314 @@
+###############
+#Load Packages#
+###############
+
+packages = c('dplyr', 'ggplot2', 'DescTools', 'lmvar', 'DescTools')
+for (package in packages){
+  if(!require(package, character.only = T)){
+    install.packages(package)
+    library(package, character.only = T)
+  }
+}
+
+
+###########
+#Load Data#
+###########
+df = read.csv('../Data/pid5PDDemoTop_valid.csv')
+selectModelBIC = read.csv('../Results/selectModelBIC.csv')
+
+colnames(df)[grep('PD', colnames(df))] = 
+  StrCap(substring(colnames(df)[grep('PD', colnames(df))], 1, 
+                   nchar(colnames(df)[grep('PD', colnames(df))])-2))
+
+write.csv(df[,c('ID', 'NEG', 'DET', 'ANT', 'DIS', 'PSY', 
+                'Paranoid', 'Schizoid', 'Schizotypal', 'Antisocial', 'Borderline', 
+                'Histrionic', 'Narcissistic', 'Avoidant', 'Dependent', 'Obsessive_compulsive', 
+                'DEPRS', 'LIFEQ', 'MANIC', 'PANIC', 'PSYCS', 'SA', 
+                'SCONF', 'SEXFN', 'SLEEP', 'SUICD', 'VIOLN', 'WORKF', 'SESSION')], 
+          'TxOutcomePrediction/pid5TOP_valid.csv')
+
+##################################################
+#PID5 vs. PD in Predicting Treatment Trajectories#
+##################################################
+
+outcomeName = c('DEPRS', 'LIFEQ', 'MANIC', 'PANIC', 'PSYCS', 'SA', 
+                'SCONF', 'SEXFN', 'SLEEP', 'SUICD', 'VIOLN', 'WORKF')
+
+
+PID5vsPD = data.frame(
+  Outcome = outcomeName,
+  Base = NA,
+  R2_PID5 = NA,
+  R2_PD = NA,
+  R2_PID5_int = NA,
+  R2_PD_int = NA,
+  R2Adj_PID5 = NA,
+  R2Adj_PD = NA,
+  BIC_PID5 = NA,
+  BIC_PD = NA,
+  CV_MAE_M_PID5 = NA, 
+  CV_MAE_SD_PID5 = NA, 
+  CV_MAE_M_SD_PID5 = NA,
+  CV_MAE_M_PD = NA, 
+  CV_MAE_SD_PD = NA, 
+  CV_MAE_M_SD_PD = NA, 
+  CV_MAE_pvalue = NA, 
+  CV_RMSE_M_PID5 = NA,
+  CV_RMSE_SD_PID5 = NA,
+  CV_RMSE_M_SD_PID5 = NA, 
+  CV_RMSE_M_PD = NA,
+  CV_RMSE_SD_PD = NA,
+  CV_RMSE_M_SD_PD = NA, 
+  CV_RMSE_pvalue = NA,
+  
+  SigPer_PID5 = NA,
+  SigPer_PD = NA
+)
+
+dir.create('../Results/predictionModels')
+
+
+i = 0
+
+for (y in outcomeName){
+  
+  mlmdata = data.frame(ID = df$ID, 
+                       SESSION = df$SESSION, 
+                       df[,c('NEG','DET','ANT','DIS','PSY')],
+                       Y = df[,y])
+  mlmdata = 
+  mlmdata %>%
+    group_by(ID) %>%
+    mutate(iniSev = Y[row_number()==1]) %>%
+    ungroup() %>%
+    mutate(SESSION = SESSION-1, Y_int = Y - iniSev) %>%
+    filter(SESSION!=0)
+  
+  if (grepl('ucgL', selectModelBIC[selectModelBIC$Outcome == y, 'Model'],  fixed = F)){
+    
+    m_base = lm(Y ~ SESSION * iniSev, mlmdata, x =T, y = T)
+    m_pid5 = lm(Y ~ SESSION*(NEG+ DET+ ANT+ DIS+ PSY)* iniSev, mlmdata, x =T, y = T)
+    m_pid5_int = lm(Y ~ SESSION*iniSev + (NEG+ DET+ ANT+ DIS+ PSY), mlmdata, x =T, y = T)
+    
+  } else if (grepl('ucgQ', selectModelBIC[selectModelBIC$Outcome == y, 'Model'],  fixed = F)){
+    
+    m_base = lm(Y ~ SESSION + I(SESSION^2)* iniSev, mlmdata, x =T, y = T)
+    m_pid5 = lm(Y ~ (SESSION + I(SESSION^2))*(NEG+ DET+ ANT+ DIS+ PSY )* iniSev, mlmdata, x =T, y = T)
+    m_pid5_int = lm(Y ~ (SESSION + I(SESSION^2))*iniSev+(NEG+ DET+ ANT+ DIS+ PSY), mlmdata, x =T, y = T)
+    
+  }else if (grepl('ucgC', selectModelBIC[selectModelBIC$Outcome == y, 'Model'],  fixed = F)){
+    m_base = lm(Y ~ SESSION + I(SESSION^2) + I(SESSION^3) * iniSev, mlmdata, x =T, y = T)
+    m_pid5 = lm(Y ~ (SESSION + I(SESSION^2) + I(SESSION^3))*(NEG+ DET+ ANT+ DIS+ PSY) * iniSev, 
+                    mlmdata, x =T, y = T)
+    m_pid5_int = lm(Y ~ (SESSION + I(SESSION^2) + I(SESSION^3))*iniSev+(NEG+ DET+ ANT+ DIS+ PSY), 
+                    mlmdata, x =T, y = T)
+  }
+
+  
+  capture.output(summary(m_base), 
+                 file = paste0('../Results/predictionModels/base_', y))
+  
+  capture.output(summary(m_pid5), 
+                 file = paste0('../Results/predictionModels/pid5_', y))
+  
+  capture.output(summary(m_pid5_int), 
+                 file = paste0('../Results/predictionModels/pid5_int_', y))
+
+  
+  sum_pid5 = summary(m_pid5)
+  
+  pid5CoefP = sum_pid5$coefficients[grep('NEG|DET|ANT|DIS|PSY', 
+                                   rownames(sum_pid5$coefficients)),'Pr(>|t|)']
+  sigPer_pid5 = length(which(pid5CoefP < 0.05))/length(pid5CoefP)
+
+  i = i + 1
+  PID5vsPD[i, 'Base'] = summary(m_base)$r.squared
+  
+  PID5vsPD[i, 'R2_PID5'] = sum_pid5$r.squared
+  PID5vsPD[i, 'R2_PID5_int'] = summary(m_pid5_int)$r.squared
+  
+  PID5vsPD[i, 'R2Adj_PID5'] = sum_pid5$adj.r.squared
+  PID5vsPD[i, 'BIC_PID5'] = BIC(m_pid5)
+  
+  cv = cv.lm(m_pid5)
+  PID5vsPD[i, 'CV_MAE_M_PID5'] = cv$MAE$mean
+  PID5vsPD[i, 'CV_MAE_SD_PID5'] = cv$MAE$sd
+  PID5vsPD[i, 'CV_MAE_M_SD_PID5'] = paste0(round(cv$MAE$mean,2),' (', 
+                           round(cv$MAE$sd,2),')')  
+  PID5vsPD[i, 'CV_RMSE_M_PID5'] = cv$MSE_sqrt$mean
+  PID5vsPD[i, 'CV_RMSE_SD_PID5'] = cv$MSE_sqrt$sd
+  PID5vsPD[i, 'CV_RMSE_M_SD_PID5'] = paste0(round(cv$MSE_sqrt$mean,2),' (', 
+                           round(cv$MSE_sqrt$sd,2),')')  
+  
+  PID5vsPD[i, 'SigPer_PID5'] = sigPer_pid5
+  
+}
+
+
+
+#######################
+#Personality Disorders#
+#######################
+
+#contrast_pd = matrix(0, ncol = 10, nrow = 11)
+#diag(contrast_pd) = 1
+i = 0
+#sampleList2 = c()
+
+PDName = c('Paranoid', 'Schizoid', 'Schizotypal', 'Antisocial', 'Borderline', 
+           'Histrionic', 'Narcissistic', 'Avoidant', 'Dependent', 'Obsessive_compulsive')
+for (y in outcomeName){
+  
+  mlmdata = data.frame(ID = df$ID, 
+                       SESSION = df$SESSION, 
+                       df[,PDName],
+                       Y = df[,y])
+  
+  mlmdata = 
+    mlmdata %>%
+    group_by(ID) %>%
+    mutate(iniSev = Y[row_number()==1]) %>%
+    ungroup() %>%
+    mutate(SESSION = SESSION-1, Y_int = Y - iniSev) %>%
+    filter(SESSION!=0)
+  
+  mlmdata_first = 
+    mlmdata %>%
+    filter(SESSION == 0)
+  
+  
+  if (grepl('ucgL', selectModelBIC[selectModelBIC$Outcome == y, 'Model'],  fixed = F)){
+    m_pd =  lm(as.formula(paste0('Y ~ SESSION*(', paste0(PDName, 
+                                                           collapse = ' + '), ') * iniSev')), mlmdata, x =T, y = T)
+    m_pd_int =  lm(as.formula(paste0('Y ~ SESSION*iniSev + (', paste0(PDName, 
+                                                         collapse = ' + '), ') ')), mlmdata, x =T, y = T)
+  
+  } else if (grepl('ucgQ', selectModelBIC[selectModelBIC$Outcome == y, 'Model'],  fixed = F)){
+    m_pd =  lm(as.formula(paste0('Y ~ (SESSION + I(SESSION^2))*(', paste0(PDName, 
+                                                           collapse = ' + '), ')* iniSev')), mlmdata, x =T, y = T)
+    m_pd_int =  lm(as.formula(paste0('Y ~ (SESSION + I(SESSION^2))*iniSev+(', paste0(PDName, 
+                                                                          collapse = ' + '), ')')), mlmdata, x =T, y = T)
+    
+  }else if (grepl('ucgC', selectModelBIC[selectModelBIC$Outcome == y, 'Model'],  fixed = F)){
+    m_pd =  lm(as.formula(paste0('Y ~ (SESSION + I(SESSION^2) + I(SESSION^3))*(', paste0(PDName, 
+                                                           collapse = ' + '), ')* iniSev')), mlmdata, x =T, y = T)
+    m_pd_int =  lm(as.formula(paste0('Y ~ (SESSION + I(SESSION^2) + I(SESSION^3))* iniSev+(', paste0(PDName, 
+                                                                                         collapse = ' + '), ') ')), mlmdata, x =T, y = T)
+     }
+  
+  capture.output(summary(m_pd), 
+                 file = paste0('../Results/predictionModels/pd_', y))
+  capture.output(summary(m_pd_int), 
+                 file = paste0('../Results/predictionModels/pd_int_', y))
+  
+  sum_pd = summary(m_pd)
+  pdCoefP = sum_pd$coefficients[grep('Paranoid|Schizoid|Schizotypal|Antisocial|Borderline|
+                                     Histrionic|Narcissistic|Avoidant|Dependent|Obsessive_compulsive', 
+                                         rownames(sum_pd$coefficients)),'Pr(>|t|)']
+  sigPer_pd = length(which(pdCoefP < 0.05))/length(pdCoefP)
+  
+  
+  i = i + 1
+  PID5vsPD[i, 'R2_PD'] = sum_pd$r.squared
+  PID5vsPD[i, 'R2_PD_int'] = summary(m_pd_int)$r.squared
+  
+  PID5vsPD[i, 'R2Adj_PD'] = summary(m_pd)$adj.r.squared
+  PID5vsPD[i, 'BIC_PD'] = BIC(m_pd)
+  
+  cv = cv.lm(m_pd)
+  PID5vsPD[i, 'CV_MAE_M_PD'] = cv$MAE$mean
+  PID5vsPD[i, 'CV_MAE_SD_PD'] = cv$MAE$sd
+  PID5vsPD[i, 'CV_MAE_M_SD_PD'] = paste0(round(cv$MAE$mean,2),' (', 
+                           round(cv$MAE$sd,2),')')  
+  
+  PID5vsPD[i, 'CV_RMSE_M_PD'] = cv$MSE_sqrt$mean
+  PID5vsPD[i, 'CV_RMSE_SD_PD'] = cv$MSE_sqrt$sd
+  PID5vsPD[i, 'CV_RMSE_M_SD_PD'] = paste0(round(cv$MSE_sqrt$mean,2),' (', 
+                           round(cv$MSE_sqrt$sd,2),')') 
+  
+  
+  PID5vsPD[i, 'SigPer_PD'] = sigPer_pd
+  
+  Ma = PID5vsPD$CV_MAE_M_PID5[i]
+  Mb = PID5vsPD$CV_MAE_M_PD[i]
+  Sa = PID5vsPD$CV_MAE_SD_PID5[i]
+  Sb = PID5vsPD$CV_MAE_SD_PD[i]
+  Sp = sqrt((Sa^2 + Sb^2)/2)
+  d = (Ma-Mb)/Sp/sqrt(0.2)
+  PID5vsPD[i,'CV_MAE_pvalue'] = 2*pt(q=abs(d), df=18, lower.tail=F)
+  
+  Ma = PID5vsPD$CV_RMSE_M_PID5[i]
+  Mb = PID5vsPD$CV_RMSE_M_PD[i]
+  Sa = PID5vsPD$CV_RMSE_SD_PID5[i]
+  Sb = PID5vsPD$CV_RMSE_SD_PD[i]
+  Sp = sqrt((Sa^2 + Sb^2)/2)
+  d = (Ma-Mb)/Sp/sqrt(0.2)
+  PID5vsPD[i,'CV_RMSE_pvalue'] = 2*pt(q=abs(d), df=18, lower.tail=F)
+  
+}
+
+PID5vsPD$delta_R2_PID5_int = PID5vsPD$R2_PID5_int - PID5vsPD$Base
+PID5vsPD$delta_R2_PID5_slp = PID5vsPD$R2_PID5 - PID5vsPD$R2_PID5_int
+PID5vsPD$R2_PID5_base_per = PID5vsPD$Base/PID5vsPD$R2_PID5
+PID5vsPD$R2_PID5_int_per = PID5vsPD$delta_R2_PID5_int /PID5vsPD$R2_PID5
+PID5vsPD$R2_PID5_slp_per = PID5vsPD$delta_R2_PID5_slp /PID5vsPD$R2_PID5
+
+PID5vsPD$delta_R2_PD_int = PID5vsPD$R2_PD_int - PID5vsPD$Base
+PID5vsPD$delta_R2_PD_slp = PID5vsPD$R2_PD - PID5vsPD$R2_PD_int
+PID5vsPD$R2_PD_base_per = PID5vsPD$Base/PID5vsPD$R2_PD
+PID5vsPD$R2_PD_int_per = PID5vsPD$delta_R2_PD_int /PID5vsPD$R2_PD
+PID5vsPD$R2_PD_slp_per = PID5vsPD$delta_R2_PD_slp /PID5vsPD$R2_PD
+
+
+write.csv(PID5vsPD, '../Results/PID5vsPDpredTOP.csv', row.names = F) 
+
+R2_Decomposition = data.frame(
+  Outcome = NA, 
+  R2_PID5 = NA, 
+  R2_PID5_De = NA,
+  R2_PD = NA,
+  R2_PD_De = NA
+)
+
+i = 1
+for (y in outcomeName){
+  R2_Decomposition[i,'Outcome'] = y
+  R2_Decomposition[i,'R2_PID5'] = round(PID5vsPD[PID5vsPD$Outcome == y,'R2_PID5'], 2)
+  
+  R2_Decomposition[i+1,'R2_PID5_De'] = paste0(
+    round(PID5vsPD[PID5vsPD$Outcome == y,'Base'], 2), 
+    ' (',round(PID5vsPD[PID5vsPD$Outcome == y,'R2_PID5_base_per']*100, 0) ,'%)')
+  R2_Decomposition[i+2,'R2_PID5_De'] = paste0(
+    round(PID5vsPD[PID5vsPD$Outcome == y,'delta_R2_PID5_int'], 2), 
+    ' (',round(PID5vsPD[PID5vsPD$Outcome == y,'R2_PID5_int_per']*100, 0) ,'%)')
+  R2_Decomposition[i+3,'R2_PID5_De'] = paste0(
+    round(PID5vsPD[PID5vsPD$Outcome == y,'delta_R2_PID5_slp'], 2), 
+    ' (',round(PID5vsPD[PID5vsPD$Outcome == y,'R2_PID5_slp_per']*100, 0) ,'%)')
+  
+  R2_Decomposition[i,'R2_PD'] = round(PID5vsPD[PID5vsPD$Outcome == y,'R2_PD'], 2)
+  R2_Decomposition[i+1,'R2_PD_De'] = paste0(
+    round(PID5vsPD[PID5vsPD$Outcome == y,'Base'], 2), 
+    ' (',round(PID5vsPD[PID5vsPD$Outcome == y,'R2_PD_base_per']*100, 0) ,'%)')
+  R2_Decomposition[i+2,'R2_PD_De'] = paste0(
+    round(PID5vsPD[PID5vsPD$Outcome == y,'delta_R2_PD_int'], 2), 
+    ' (',round(PID5vsPD[PID5vsPD$Outcome == y,'R2_PD_int_per']*100, 0) ,'%)')
+  R2_Decomposition[i+3,'R2_PD_De'] = paste0(
+    round(PID5vsPD[PID5vsPD$Outcome == y,'delta_R2_PD_slp'], 2), 
+    ' (',round(PID5vsPD[PID5vsPD$Outcome == y,'R2_PD_slp_per']*100, 0) ,'%)')
+  
+  i = i+4
+                                                
+}
+
+write.csv(R2_Decomposition, '../Results/PID5vsPDpredTOP_R2Decomposition.csv', row.names = F) 
+R2_Decomposition
+
+round(cor(df %>%
+  filter(SESSION == 1) %>%
+  select(outcomeName),
+df %>%
+  filter(SESSION == 1) %>%
+  select(NEG, DET, ANT, DIS, PSY, PDName),
+use = 'pair'), 2)
+

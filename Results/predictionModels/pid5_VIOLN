@@ -1,0 +1,43 @@
+
+Call:
+lm(formula = Y ~ SESSION * (NEG + DET + ANT + DIS + PSY) * iniSev, 
+    data = mlmdata, x = T, y = T)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.1339 -0.1311 -0.0935 -0.0173 11.6633 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)    
+(Intercept)         0.017781   0.023778   0.748 0.454651    
+SESSION            -0.017344   0.002511  -6.908 6.41e-12 ***
+NEG                 0.056774   0.022840   2.486 0.013004 *  
+DET                 0.010597   0.024592   0.431 0.666580    
+ANT                -0.045294   0.022311  -2.030 0.042467 *  
+DIS                 0.004015   0.025944   0.155 0.877016    
+PSY                -0.003197   0.024780  -0.129 0.897356    
+iniSev              0.625007   0.025499  24.511  < 2e-16 ***
+SESSION:NEG         0.004486   0.001356   3.307 0.000957 ***
+SESSION:DET         0.012771   0.002276   5.611 2.26e-08 ***
+SESSION:ANT        -0.016562   0.003119  -5.310 1.21e-07 ***
+SESSION:DIS         0.004219   0.002522   1.673 0.094489 .  
+SESSION:PSY         0.001992   0.002161   0.922 0.356673    
+SESSION:iniSev     -0.060867   0.009005  -6.759 1.78e-11 ***
+NEG:iniSev          0.131931   0.029764   4.433 9.77e-06 ***
+DET:iniSev          0.022427   0.031161   0.720 0.471785    
+ANT:iniSev         -0.046002   0.030738  -1.497 0.134644    
+DIS:iniSev          0.069193   0.026314   2.629 0.008611 ** 
+PSY:iniSev          0.151211   0.036306   4.165 3.24e-05 ***
+SESSION:NEG:iniSev  0.018175   0.004423   4.109 4.12e-05 ***
+SESSION:DET:iniSev  0.047414   0.008151   5.817 6.88e-09 ***
+SESSION:ANT:iniSev -0.062685   0.011451  -5.474 4.90e-08 ***
+SESSION:DIS:iniSev  0.013951   0.008802   1.585 0.113128    
+SESSION:PSY:iniSev  0.003584   0.007485   0.479 0.632075    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7794 on 2189 degrees of freedom
+  (14 observations deleted due to missingness)
+Multiple R-squared:  0.4256,	Adjusted R-squared:  0.4195 
+F-statistic: 70.51 on 23 and 2189 DF,  p-value: < 2.2e-16
+

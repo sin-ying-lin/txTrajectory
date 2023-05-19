@@ -1,0 +1,64 @@
+
+Call:
+lm(formula = as.formula(paste0("Y ~ SESSION*(", paste0(PDName, 
+    collapse = " + "), ") * iniSev")), data = mlmdata, x = T, 
+    y = T)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.6559 -0.5141 -0.0847  0.0537 12.8552 
+
+Coefficients: (9 not defined because of singularities)
+                                     Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                         -0.214830   0.053492  -4.016 6.12e-05 ***
+SESSION                              0.019135   0.001046  18.290  < 2e-16 ***
+Paranoid                             0.100875   1.036749   0.097  0.92250    
+Schizoid                            -0.026530   0.238713  -0.111  0.91152    
+Schizotypal                          1.047726   2.295399   0.456  0.64811    
+Antisocial                           0.605587   0.399155   1.517  0.12937    
+Borderline                           0.287469   0.146054   1.968  0.04917 *  
+Histrionic                          -0.769162   1.293753  -0.595  0.55223    
+Narcissistic                        -0.029807   0.604636  -0.049  0.96069    
+Avoidant                             0.036082   0.229723   0.157  0.87520    
+Dependent                            0.067895   2.602675   0.026  0.97919    
+Obsessive_compulsive                -0.108970   0.682981  -0.160  0.87325    
+iniSev                               0.567840   0.035607  15.947  < 2e-16 ***
+SESSION:Paranoid                     0.448975   0.324725   1.383  0.16692    
+SESSION:Schizoid                    -0.014271   0.002986  -4.779 1.88e-06 ***
+SESSION:Schizotypal                 -0.672668   1.062273  -0.633  0.52665    
+SESSION:Antisocial                  -0.031260   0.024300  -1.286  0.19844    
+SESSION:Borderline                  -0.027921   0.005352  -5.217 1.99e-07 ***
+SESSION:Histrionic                   0.127474   0.287518   0.443  0.65755    
+SESSION:Narcissistic                 0.148478   0.088420   1.679  0.09325 .  
+SESSION:Avoidant                    -0.062995   0.030872  -2.041  0.04142 *  
+SESSION:Dependent                   -0.014240   1.839908  -0.008  0.99383    
+SESSION:Obsessive_compulsive         0.176503   0.160388   1.100  0.27125    
+SESSION:iniSev                       0.014397   0.001802   7.989 2.19e-15 ***
+Paranoid:iniSev                     -0.418531   0.257458  -1.626  0.10417    
+Schizoid:iniSev                     -0.286780   0.173103  -1.657  0.09772 .  
+Schizotypal:iniSev                         NA         NA      NA       NA    
+Antisocial:iniSev                          NA         NA      NA       NA    
+Borderline:iniSev                    0.022153   0.135033   0.164  0.86970    
+Histrionic:iniSev                          NA         NA      NA       NA    
+Narcissistic:iniSev                 -0.836905   0.306922  -2.727  0.00645 ** 
+Avoidant:iniSev                      0.514972   0.159064   3.238  0.00122 ** 
+Dependent:iniSev                           NA         NA      NA       NA    
+Obsessive_compulsive:iniSev          0.375736   0.351936   1.068  0.28581    
+SESSION:Paranoid:iniSev             -0.094549   0.060804  -1.555  0.12010    
+SESSION:Schizoid:iniSev                    NA         NA      NA       NA    
+SESSION:Schizotypal:iniSev                 NA         NA      NA       NA    
+SESSION:Antisocial:iniSev                  NA         NA      NA       NA    
+SESSION:Borderline:iniSev            0.004230   0.016611   0.255  0.79900    
+SESSION:Histrionic:iniSev                  NA         NA      NA       NA    
+SESSION:Narcissistic:iniSev          0.383254   0.089925   4.262 2.11e-05 ***
+SESSION:Avoidant:iniSev             -0.210675   0.064207  -3.281  0.00105 ** 
+SESSION:Dependent:iniSev                   NA         NA      NA       NA    
+SESSION:Obsessive_compulsive:iniSev -0.306816   0.155225  -1.977  0.04821 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.502 on 2175 degrees of freedom
+  (17 observations deleted due to missingness)
+Multiple R-squared:  0.342,	Adjusted R-squared:  0.3317 
+F-statistic: 33.25 on 34 and 2175 DF,  p-value: < 2.2e-16
+

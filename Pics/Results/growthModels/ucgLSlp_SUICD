@@ -1,0 +1,29 @@
+Linear mixed model fit by maximum likelihood . t-tests use Satterthwaite's method [
+lmerModLmerTest]
+Formula: Y ~ SESSION + (SESSION | ID)
+   Data: mlmdata
+
+     AIC      BIC   logLik deviance df.resid 
+  8679.0   8713.8  -4333.5   8667.0     2459 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-4.6461 -0.2595 -0.0878  0.0968 10.1754 
+
+Random effects:
+ Groups   Name        Variance Std.Dev. Corr 
+ ID       (Intercept) 3.89312  1.9731        
+          SESSION     0.04541  0.2131   -0.80
+ Residual             1.44665  1.2028        
+Number of obs: 2465, groups:  ID, 249
+
+Fixed effects:
+             Estimate Std. Error        df t value Pr(>|t|)    
+(Intercept)   1.48681    0.13471 230.93614   11.04  < 2e-16 ***
+SESSION      -0.10295    0.02097  41.28500   -4.91 1.48e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+        (Intr)
+SESSION -0.627

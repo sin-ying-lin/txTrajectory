@@ -1,0 +1,70 @@
+"Sx_Code","Sx_Description","MR1","MR2"
+"antisocial_cd","Behavioral problems",0.327827815630715,-0.0679237037420063
+"antisocial1","Irresponsibility (work)",0.388799604010296,-0.0209713646502115
+"antisocial2","Impulsivity (planning)",0.257750026245574,-0.0775725125937272
+"antisocial3","Irresponsibility (financial)",0.412781239981928,-0.0311339540171574
+"antisocial4","Aggressiveness",0.555909535850395,-0.10330056044075
+"antisocial5","Deceitfulness",0.496936664897784,-0.0625852092476765
+"antisocial6","Recklessness",0.413136997975942,-0.160071128532337
+"antisocial7","Illegal behavior",0.548513654919614,-0.232363219897767
+"antisocial8","No remorse",0.467317003872197,-0.224679719721605
+"avoidant1","Avoid rejections",-0.0548087888629716,0.484045316522394
+"avoidant2","Inferiority feelings",-0.0205745084307132,0.612296567864179
+"avoidant3","Inadequacy feelings",-0.117581924945767,0.559222589737675
+"avoidant4","Relationship restraint",0.00488883742933027,0.363935611511148
+"avoidant5","Avoid intimacy",-0.0159203478592689,0.555821071613097
+"avoidant6","Fear of criticism and rejection",0.0412141412201333,0.521834471737478
+"avoidant7","Avoid interpersonal risk",0.0173042118438073,0.550087712999465
+"borderline1","Identity disturbance (self-image)",0.369556747079689,0.270605239045718
+"borderline10","Sexual impulsivity",0.540215962106858,0.0360565403398875
+"borderline11","Identity disturbance (gender)",0.266733152362774,0.0199189523592565
+"borderline12","Paranoia/dissociation",0.408453564762677,0.110359143057202
+"borderline13","Impulsivity (self-damaging)",0.514059829592763,-0.035694252402349
+"borderline14","Self-injuring/suicide",0.379839533561628,0.0760009158329345
+"borderline2","Identity disturbance (goals)",0.356604465378245,0.188298340739738
+"borderline3","Identity disturbance(values)",0.358687596979055,0.230026051848878
+"borderline4","Identity disturbance (friendship)",0.311743177671932,0.159378914435032
+"borderline5","Unstable and intense relationships",0.589968199348206,0.157487554917328
+"borderline6","Chronic emptiness",0.357250475954492,0.283091720955633
+"borderline7","Fear of abandonment",0.389253354205786,0.182714064203196
+"borderline8","Affective instability",0.486854951009088,0.152041858738781
+"borderline9","Intense anger",0.541841915805191,0.0346238870717784
+"dependent1","Inability to make decisions on own",0.0586111525672265,0.297631088980052
+"dependent2","Gives other responsibility",0.14574773395253,0.290052851565405
+"dependent3","Can't initiate tasks",0.0244269024708813,0.360372951405549
+"dependent4","Replaces relationships quickly",0.322969971467655,0.269438985484109
+"dependent5","Always agrees with others",-0.00413858231835146,0.274091147582602
+"dependent8","Fear of being left to care for self",-0.0214291091078043,0.236370684339835
+"histrionic1","suggestible",0.202894330897527,0.150631913156808
+"histrionic2","Desire to be center of attention",0.289282931528356,0.125848836226558
+"histrionic3","Uses appearance to attract attention",0.424032798630763,-0.031791665380877
+"histrionic4","Thinks other are closer than in reality",0.30770184951136,0.130964135756096
+"histrionic5","self-dramatization",0.307069174059407,0.0265922242939596
+"histrionic6","shallow or shifting emotions",0.37089218684,0.179019208208249
+"histrionic7","Provocative or sexualized behavior",0.424836965707584,-0.048177887803279
+"narcissistic1","Requires excessive admiration",0.34798403141346,-0.0994988266443524
+"narcissistic2","Grandiosity",0.499081835765522,-0.184539704132398
+"narcissistic3","Fantasies",0.338435708926552,0.0747590376680987
+"narcissistic4","Feelings of uniqueness",0.427371233111061,-0.0504478588748928
+"narcissistic5","Lacks empathy ",0.370079402554861,-0.106352363017228
+"narcissistic6","sense of entitlement ",0.403820456672275,-0.124048783318612
+"narcissistic7","Exploitative",0.437807440809184,-0.0405024479552018
+"narcissistic8","Envious of others/perceives others as envious",0.311036581029177,0.0226082097086642
+"narcissistic9","Arrogant, haughty",0.377271448495467,-0.182284028443307
+"oc3","Preoccupied with details",0.108492030084151,0.140924762557415
+"oc4","Hoarding",0.153171560733055,0.29084458563275
+"oc7","Can't delegate tasks",0.242059048652891,0.0636598384841781
+"oc8","Rigid and stubborn",0.253901449953487,0.145756564970489
+"paranoid1","Reluctant to confide due to fear of maliciousness",0.17032909526343,0.274839545653949
+"paranoid2","Unjustified doubt in loyalty and trust",0.294695275321971,0.304417226300534
+"paranoid3","Persistent grudges",0.379128705257722,0.0891759357380539
+"paranoid4","Perceives attacks on character",0.271404820714704,0.182621557802276
+"paranoid5","Perceives hidden threatening ",0.348652206575636,0.208059062682549
+"paranoid6","suspects harm, exploitation, and deceit",0.368536268050655,0.237691364006917
+"paranoid7","suspects infidelity",0.273249191480052,0.10202662924749
+"schizoid1","No close friends",0.0899908741572883,0.227868743869064
+"schizoid2","No desire for relationships",0.163989162227139,0.276504831835872
+"schizoid3","Almost always solitary",-0.00143523808234064,0.34669275550969
+"schizoid6","No interest in sexual activity",-0.036085009394655,0.31533871643165
+"schizotypal1","Social anxiety",0.0410172420144602,0.375453334863005
+"schizotypal2","Ideas of reference",0.12729366017734,0.361304577137954

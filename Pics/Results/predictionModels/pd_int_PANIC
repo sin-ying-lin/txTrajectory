@@ -1,0 +1,36 @@
+
+Call:
+lm(formula = as.formula(paste0("Y ~ (SESSION + I(SESSION^2))*iniSev+(", 
+    paste0(PDName, collapse = " + "), ")")), data = mlmdata, 
+    x = T, y = T)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.7278 -0.6820  0.0133  0.5175  6.3059 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(>|t|)    
+(Intercept)          -1.761e-01  5.556e-02  -3.169 0.001552 ** 
+SESSION              -2.196e-02  3.096e-03  -7.094 1.75e-12 ***
+I(SESSION^2)          1.166e-04  2.378e-05   4.903 1.01e-06 ***
+iniSev                7.199e-01  2.157e-02  33.368  < 2e-16 ***
+Paranoid             -1.066e-01  2.646e-01  -0.403 0.687072    
+Schizoid             -7.213e-01  1.032e-01  -6.986 3.72e-12 ***
+Schizotypal          -1.171e+00  6.838e-01  -1.712 0.086996 .  
+Antisocial           -5.184e-01  1.783e-01  -2.908 0.003672 ** 
+Borderline            1.294e-01  7.280e-02   1.778 0.075587 .  
+Histrionic            2.512e+00  4.713e-01   5.329 1.09e-07 ***
+Narcissistic          6.454e-01  2.115e-01   3.051 0.002305 ** 
+Avoidant             -4.292e-01  1.102e-01  -3.894 0.000102 ***
+Dependent            -2.915e-01  6.806e-01  -0.428 0.668414    
+Obsessive_compulsive  5.348e-01  2.103e-01   2.543 0.011050 *  
+SESSION:iniSev        4.073e-03  1.426e-03   2.856 0.004330 ** 
+I(SESSION^2):iniSev   1.212e-06  1.226e-05   0.099 0.921264    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.176 on 2207 degrees of freedom
+  (4 observations deleted due to missingness)
+Multiple R-squared:  0.6218,	Adjusted R-squared:  0.6193 
+F-statistic:   242 on 15 and 2207 DF,  p-value: < 2.2e-16
+

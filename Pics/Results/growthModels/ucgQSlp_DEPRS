@@ -1,0 +1,29 @@
+Nonlinear mixed model fit by maximum likelihood  ['nlmerMod']
+Formula: Y ~ q_modelg(SESSION, b0, b1, b2) ~ (b0 + b1 + b2 | ID)
+   Data: mlmdata
+
+     AIC      BIC   logLik deviance df.resid 
+  6305.1   6363.3  -3142.6   6285.1     2461 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-5.4618 -0.5138 -0.0566  0.4643  6.7320 
+
+Random effects:
+ Groups   Name Variance Std.Dev. Corr       
+ ID       b0   2.114801 1.4542              
+          b1   0.022211 0.1490   -0.21      
+          b2   0.000036 0.0060   -0.01 -0.94
+ Residual      0.500055 0.7071              
+Number of obs: 2471, groups:  ID, 249
+
+Fixed effects:
+     Estimate Std. Error t value
+b0  2.1910242  0.0978632  22.389
+b1 -0.1109022  0.0201711  -5.498
+b2  0.0026954  0.0009002   2.994
+
+Correlation of Fixed Effects:
+   b0     b1    
+b1 -0.246       
+b2  0.125 -0.908

@@ -1,0 +1,12 @@
+---
+title: "shiny"
+output: html_document
+---
+
+```{r, echo = FALSE}
+library(shiny)
+shinyAppDir(
+  'TxOutcomePrediction',
+  options = list(width = "100%", height = 700)
+)
+```

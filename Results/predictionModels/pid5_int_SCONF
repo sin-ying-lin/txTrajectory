@@ -1,0 +1,28 @@
+
+Call:
+lm(formula = Y ~ SESSION * iniSev + (NEG + DET + ANT + DIS + 
+    PSY), data = mlmdata, x = T, y = T)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.8939 -0.7495 -0.0859  0.6259  5.5345 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    -0.1981396  0.0376001  -5.270 1.50e-07 ***
+SESSION         0.0010350  0.0008281   1.250 0.211486    
+iniSev          0.5348298  0.0226628  23.599  < 2e-16 ***
+NEG             0.1653730  0.0280849   5.888 4.50e-09 ***
+DET            -0.1087123  0.0282390  -3.850 0.000122 ***
+ANT            -0.2124427  0.0227058  -9.356  < 2e-16 ***
+DIS            -0.1221447  0.0286705  -4.260 2.13e-05 ***
+PSY            -0.0527526  0.0300356  -1.756 0.079169 .  
+SESSION:iniSev -0.0000533  0.0004266  -0.125 0.900586    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.201 on 2209 degrees of freedom
+  (9 observations deleted due to missingness)
+Multiple R-squared:  0.3504,	Adjusted R-squared:  0.3481 
+F-statistic: 148.9 on 8 and 2209 DF,  p-value: < 2.2e-16
+

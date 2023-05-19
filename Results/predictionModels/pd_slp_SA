@@ -1,0 +1,41 @@
+
+Call:
+lm(formula = as.formula(paste0("Y_int ~ SESSION*(", paste0(PDName, 
+    collapse = " + "), ")")), data = mlmdata, x = T, y = T)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.7538 -0.4241  0.0473  0.3089 13.0855 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                  -0.3165731  0.0461392  -6.861 8.62e-12 ***
+SESSION                       0.0203471  0.0009982  20.383  < 2e-16 ***
+Paranoid                     -0.5551017  0.4901963  -1.132   0.2576    
+Schizoid                      0.2227014  0.2257650   0.986   0.3240    
+Schizotypal                   0.4445731  1.2679634   0.351   0.7259    
+Antisocial                    0.7110013  0.3562489   1.996   0.0461 *  
+Borderline                    0.0165069  0.1146461   0.144   0.8855    
+Histrionic                   -0.0507608  0.9959689  -0.051   0.9594    
+Narcissistic                 -0.1408953  0.3689920  -0.382   0.7026    
+Avoidant                     -0.0166730  0.1687470  -0.099   0.9213    
+Dependent                     0.3165731  0.9925476   0.319   0.7498    
+Obsessive_compulsive          0.1599658  0.3181398   0.503   0.6151    
+SESSION:Paranoid             -0.6059667  0.1288248  -4.704 2.70e-06 ***
+SESSION:Schizoid             -0.0194141  0.0028095  -6.910 6.16e-12 ***
+SESSION:Schizotypal          -0.5323471  0.6773068  -0.786   0.4320    
+SESSION:Antisocial           -0.0396879  0.0209641  -1.893   0.0585 .  
+SESSION:Borderline           -0.0214473  0.0018349 -11.689  < 2e-16 ***
+SESSION:Histrionic           -0.0628221  0.2345084  -0.268   0.7888    
+SESSION:Narcissistic          0.1426785  0.0676858   2.108   0.0351 *  
+SESSION:Avoidant              0.0114223  0.0194655   0.587   0.5574    
+SESSION:Dependent            -0.0203471  0.9050889  -0.022   0.9821    
+SESSION:Obsessive_compulsive -0.1023016  0.0504589  -2.027   0.0427 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.515 on 2437 degrees of freedom
+  (17 observations deleted due to missingness)
+Multiple R-squared:  0.1972,	Adjusted R-squared:  0.1903 
+F-statistic: 28.51 on 21 and 2437 DF,  p-value: < 2.2e-16
+

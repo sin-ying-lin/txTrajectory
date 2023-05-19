@@ -1,0 +1,55 @@
+
+Call:
+lm(formula = Y ~ (SESSION + I(SESSION^2)) * (NEG + DET + ANT + 
+    DIS + PSY) * iniSev, data = mlmdata, x = T, y = T)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.4709 -0.6172 -0.0232  0.6122  4.6260 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)             -0.1421619  0.0789264  -1.801 0.071810 .  
+SESSION                  0.0920926  0.0127850   7.203 8.06e-13 ***
+I(SESSION^2)            -0.0027051  0.0004117  -6.571 6.22e-11 ***
+NEG                      0.2648087  0.0738552   3.586 0.000344 ***
+DET                     -0.0671712  0.0925729  -0.726 0.468160    
+ANT                      0.1131021  0.0614298   1.841 0.065734 .  
+DIS                     -0.0454052  0.0858889  -0.529 0.597101    
+PSY                      0.2419564  0.0779812   3.103 0.001942 ** 
+iniSev                   0.8448743  0.0308305  27.404  < 2e-16 ***
+SESSION:NEG             -0.0706494  0.0092509  -7.637 3.30e-14 ***
+SESSION:DET              0.0188273  0.0176915   1.064 0.287356    
+SESSION:ANT             -0.0029446  0.0067436  -0.437 0.662409    
+SESSION:DIS             -0.0327267  0.0130862  -2.501 0.012462 *  
+SESSION:PSY             -0.0515393  0.0106462  -4.841 1.38e-06 ***
+I(SESSION^2):NEG         0.0025787  0.0002818   9.151  < 2e-16 ***
+I(SESSION^2):DET        -0.0016615  0.0006734  -2.467 0.013696 *  
+I(SESSION^2):ANT        -0.0013338  0.0002574  -5.182 2.40e-07 ***
+I(SESSION^2):DIS        -0.0003095  0.0004341  -0.713 0.475871    
+I(SESSION^2):PSY         0.0033059  0.0003113  10.619  < 2e-16 ***
+SESSION:iniSev          -0.0656816  0.0071299  -9.212  < 2e-16 ***
+I(SESSION^2):iniSev      0.0022589  0.0003030   7.456 1.28e-13 ***
+NEG:iniSev              -0.0940245  0.0264690  -3.552 0.000390 ***
+DET:iniSev               0.0643624  0.0327949   1.963 0.049823 *  
+ANT:iniSev              -0.0188848  0.0329644  -0.573 0.566782    
+DIS:iniSev               0.0898311  0.0307591   2.920 0.003531 ** 
+PSY:iniSev              -0.0634875  0.0287256  -2.210 0.027199 *  
+SESSION:NEG:iniSev       0.0191385  0.0035453   5.398 7.46e-08 ***
+SESSION:DET:iniSev      -0.0127346  0.0059038  -2.157 0.031114 *  
+SESSION:ANT:iniSev      -0.0486388  0.0081733  -5.951 3.10e-09 ***
+SESSION:DIS:iniSev      -0.0029839  0.0043772  -0.682 0.495495    
+SESSION:PSY:iniSev       0.0371002  0.0049075   7.560 5.90e-14 ***
+I(SESSION^2):NEG:iniSev -0.0007482  0.0001330  -5.627 2.07e-08 ***
+I(SESSION^2):DET:iniSev  0.0005770  0.0002184   2.642 0.008305 ** 
+I(SESSION^2):ANT:iniSev  0.0027287  0.0003754   7.270 5.00e-13 ***
+I(SESSION^2):DIS:iniSev  0.0004410  0.0001423   3.100 0.001961 ** 
+I(SESSION^2):PSY:iniSev -0.0021834  0.0001741 -12.544  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.027 on 2186 degrees of freedom
+  (5 observations deleted due to missingness)
+Multiple R-squared:  0.6476,	Adjusted R-squared:  0.642 
+F-statistic: 114.8 on 35 and 2186 DF,  p-value: < 2.2e-16
+
